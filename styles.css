@@ -135,6 +135,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  
 }
 
 
@@ -149,9 +151,11 @@ body {
 
 
 
-.nav,
+/* Removed transition: all to prevent flash during route changes */
+/* Individual elements (like .nav a) can have their own transitions */
+/* Transition removed - handled in Navigation.css to prevent flash */
 .mobile-nav-bar {
-  transition: all 0.3s ease-out;
+  /* Transition removed - see Navigation.css */
 }
 
 

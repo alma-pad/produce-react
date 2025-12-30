@@ -1,0 +1,122 @@
+/* Prevent flash on header elements during navigation */
+.header,
+.header-details {
+  /* Smooth transitions for theme changes, instant for route changes */
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  /* Force GPU acceleration */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Prevent layout shifts */
+  contain: layout style paint;
+}
+
+/* Disable transitions during route changes */
+body.route-changing .header,
+body.route-changing .header-details {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing .header,
+body.theme-changing .header-details {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+/* Also prevent transitions on header pseudo-elements */
+.header::after,
+.header-details::after {
+  transition: none !important;
+  /* Ensure pseudo-elements don't cause flash */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent transition on #index specifically */
+#index {
+  /* Smooth transitions for theme changes, instant for route changes */
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  /* Ensure instant updates */
+  will-change: auto;
+  backface-visibility: hidden;
+}
+
+/* Disable transitions during route changes */
+body.route-changing #index {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing #index {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out !important;
+}
+
+/* Prevent any opacity or visibility transitions that might cause flash */
+.header *,
+.header-details * {
+  transition: none !important;
+}
+
+/* But allow transitions on interactive elements for hover effects */
+.header a,
+.header-details a,
+.header button,
+.header-details button {
+  transition: color 0.3s ease-out, background-color 0.3s ease-out !important;
+}
+
+/* Mobile-specific header fixes to prevent flash */
+@media screen and (max-width: 767px) {
+  .header,
+  .header-details {
+    /* Smooth transitions for theme changes, instant for route changes */
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    /* Force GPU acceleration on mobile */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    contain: layout style paint;
+  }
+
+  /* Disable transitions during route changes on mobile */
+  body.route-changing .header,
+  body.route-changing .header-details {
+    transition: none !important;
+  }
+
+  /* Enable smooth transitions during theme changes on mobile */
+  body.theme-changing .header,
+  body.theme-changing .header-details {
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  }
+
+  .header::after,
+  .header-details::after {
+    /* Ensure pseudo-elements don't flash on mobile */
+    transition: none !important;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Prevent any child elements from causing flash */
+  .header *,
+  .header-details * {
+    transition: none !important;
+  }
+
+  /* But allow transitions on interactive elements */
+  .header a,
+  .header-details a,
+  .header button,
+  .header-details button {
+    transition: color 0.3s ease-out, background-color 0.3s ease-out !important;
+  }
+
+  /* Ensure header content doesn't cause flash */
+  .header-content,
+  .header-container {
+    transition: none !important;
+    will-change: auto;
+  }
+}
+

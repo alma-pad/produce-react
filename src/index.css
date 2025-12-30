@@ -1,0 +1,25 @@
+/* This file ensures smooth transitions without white flash */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  min-height: 100%;
+  background-color: var(--color-background, #EDEDED);
+  /* Removed transition to prevent flash during route changes */
+  transition: none;
+}
+
+/* Prevent flash of unstyled content */
+body {
+  background-color: var(--color-background, #EDEDED);
+  /* Removed transition to prevent flash during route changes */
+  transition: none;
+}
+

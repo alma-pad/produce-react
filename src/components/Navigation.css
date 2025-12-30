@@ -1,0 +1,128 @@
+/* Prevent flash on nav-container during navigation */
+.nav-container {
+  /* Force GPU acceleration to prevent flash */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Default: NO transitions to prevent flash during route changes */
+  /* Transitions only enabled when theme-changing class is present */
+  /* Use !important to override styles.css */
+  transition: none !important;
+  /* Ensure the container stays stable */
+  contain: layout style paint;
+  /* Prevent any visual changes during route changes */
+  isolation: isolate;
+  /* Ensure background color is always set and stable */
+  background-color: var(--color-primary) !important;
+}
+
+/* CRITICAL: Prevent any visual changes during route changes */
+body.route-changing .nav-container,
+body.route-changing .nav {
+  /* Force no transitions */
+  transition: none !important;
+  /* Prevent any color changes - use current computed value */
+  /* This prevents CSS variable updates from causing visual changes */
+  background-color: inherit !important;
+  /* Ensure immediate updates */
+  will-change: auto !important;
+  /* Force GPU layer to stay stable */
+  transform: translateZ(0) !important;
+  /* Prevent any opacity or visibility changes */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Disable transitions during route changes (redundant but ensures it) */
+body.route-changing .nav-container {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing .nav-container {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out !important;
+}
+
+.nav {
+  /* Prevent reflows */
+  will-change: auto;
+  backface-visibility: hidden;
+  /* Default: NO transitions to prevent flash during route changes */
+  /* Transitions only enabled when theme-changing class is present */
+  /* Use !important to override styles.css */
+  transition: none !important;
+  /* Ensure background color is always set and stable */
+  background-color: var(--color-primary) !important;
+}
+
+/* Disable transitions during route changes (redundant but ensures it) */
+body.route-changing .nav {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing .nav {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out !important;
+}
+
+/* Ensure nav links don't cause reflow during navigation */
+.nav a,
+.nav h3 {
+  /* Prevent layout shifts */
+  will-change: auto;
+  /* Smooth color transitions only */
+  transition: color 0.3s ease-out, background-color 0.3s ease-out;
+}
+
+/* Prevent flash when active state changes */
+.nav-active {
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+/* Prevent flash on mobile navigation elements during navigation */
+.nav-container-mobile {
+  /* Force GPU acceleration to prevent flash */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Smooth transitions for theme changes, instant for route changes */
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  /* Ensure the container stays stable */
+  contain: layout style paint;
+}
+
+/* Disable transitions during route changes */
+body.route-changing .nav-container-mobile {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing .nav-container-mobile {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out !important;
+}
+
+.mobile-nav-bar {
+  /* Prevent reflows */
+  will-change: auto;
+  backface-visibility: hidden;
+  /* Smooth transitions for theme changes, instant for route changes */
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+/* Disable transitions during route changes */
+body.route-changing .mobile-nav-bar {
+  transition: none !important;
+}
+
+/* Enable smooth transitions during theme changes */
+body.theme-changing .mobile-nav-bar {
+  transition: background-color 0.3s ease-out, color 0.3s ease-out !important;
+}
+
+/* Prevent transitions on mobile nav pseudo-elements */
+.nav-container-mobile::before,
+.nav-container-mobile::after {
+  transition: none !important;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
