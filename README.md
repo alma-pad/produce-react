@@ -6,10 +6,7 @@ A seasonal produce guide website built with React, featuring a smooth, seamless 
 
 - **No Page Refreshes**: All navigation is handled client-side using React Router
 - **Smooth Transitions**: No white flash when navigating between pages
-- **Seasonal Themes**: Dynamic color themes based on the selected time period
-- **Filtering**: Filter produce by type (fruits, vegetables, nuts, year-round)
-- **Mobile Responsive**: Fully responsive design with mobile navigation
-- **Modern React**: Built with React 18, React Router 6, and Vite
+
 
 ## Setup
 
